@@ -1,0 +1,6 @@
+root: "~"
+layout:
+  -
+    - echo "Mert init"
+    - echo "Good day!"
+  -
