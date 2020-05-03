@@ -30,3 +30,7 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" manage tabs
+nnoremap <silent> <M-t>    :tab split<cr>
+nnoremap <silent> ZT       :tabclose<cr>
