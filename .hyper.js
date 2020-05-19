@@ -1,3 +1,7 @@
+// Future versions of Hyper may add additional config options,
+// which will not automatically be merged into this file.
+// See https://hyper.is#cfg for all currently supported options.
+
 module.exports = {
   config: {
     // choose either `'stable'` for receiving highly polished,
@@ -32,7 +36,7 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // set to `true` (without backticks and without quotes) for blinking cursor
-    cursorBlink: false,
+    cursorBlink: true,
 
     // color of the text
     foregroundColor: '#fff',
@@ -46,12 +50,6 @@ module.exports = {
 
     // border color (window, tabs)
     borderColor: '#333',
-
-    hyperStatusLine: {
-     dirtyColor: 'salmon',
-     aheadColor: 'ivory',
-     footerTransparent: true,
-    },
 
     // custom CSS to embed in the main window
     css: '',
@@ -140,12 +138,6 @@ module.exports = {
     webGLRenderer: false,
 
     // for advanced config flags please refer to https://hyper.is/#cfg
-    hyperline: {
-      plugins: [
-        "battery",
-        "spotify"
-      ]
-    },
     hyperTabs: {
       // trafficButtons: true,
       // border: true,
@@ -153,8 +145,43 @@ module.exports = {
       tabIconsColored: true,
       // activityColor: 'salmon',
       // activityPulse: false,
+    },
+    hyperSpotify: {
+      position: 'bottom',
+      margin: 'default',
+      controlsPosition: 'left',
+      theme: 'custom',
+      overlayColor: '#A7A7A7',
+      iconColor: "#1ED760",
+      spotifyIconColor: '#1ED760',
+      textColor: '#878787',
+    },
+    paneNavigation: {
+      debug: false,
+      hotkeys: {
+        navigation: {
+          up: 'ctrl+alt+up',
+          down: 'ctrl+alt+down',
+          left: 'ctrl+alt+left',
+          right: 'ctrl+alt+right'
+        },
+        jump_prefix: 'ctrl+alt', // completed with 1-9 digits
+        permutation_modifier: 'shift', // Added to jump and navigation hotkeys for pane permutation
+        maximize: 'meta+enter'
+      },
+      showIndicators: true, // Show pane number
+      indicatorPrefix: '^⌥', // Will be completed with pane number
+      indicatorStyle: { // Added to indicator <div>
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        fontSize: '10px'
+      },
+      focusOnMouseHover: false,
+      inactivePaneOpacity: 0.6 // Set to 1 to disable inactive panes dimming
     }
   },
+
 
   // a list of plugins to fetch and install from npm
   // format: [@org/]project[#version]
@@ -163,13 +190,13 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    "hyperline",
+    "hyper-spotify",
     "hyper-font-ligatures",
     "hyper-search",
     "hyper-pane",
-    "hyper-statusline",
     "hyper-blink",
-    "hyper-tabs-enhanced"
+    "hyper-tabs-enhanced",
+    "hyper-altair"
   ],
 
   // in development, you can create a directory under
