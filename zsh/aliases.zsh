@@ -10,6 +10,9 @@ alias less='less -R'
 
 alias g='git'
 alias gc='git commit -m'
+alias gp='git push'
+alias gcb='git checkout -b'
+alias gs='git status'
 
 alias v='nvim'
 
