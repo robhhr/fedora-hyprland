@@ -9,6 +9,7 @@ alias less='less -R'
 
 
 alias g='git'
+alias gA='git add -A'
 alias gc='git commit -m'
 alias gp='git push'
 alias gcb='git checkout -b'
