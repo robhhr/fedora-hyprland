@@ -4,6 +4,7 @@ let mapleader=" "
 
 set number
 set numberwidth=5
+set mouse=a
 
 " remaps
 map ss viw
