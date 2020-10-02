@@ -40,10 +40,10 @@ alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
 bind m:cmd;shift;alt focus 'Canary Mail'
 bind d:cmd;shift;alt focus 'Discord'
 
-bind space:cmd;shift ${full}
-bind a:cmd;shift ${lefthalf}
-bind d:cmd;shift ${righthalf}
-bind q:cmd;shift ${topleft}
-bind e:cmd;shift ${topright}
-bind z:cmd;shift ${bottomleft}
-bind c:cmd;shift ${bottomright}
+bind space:alt;ctrl ${full}
+bind a:alt;ctrl ${lefthalf}
+bind d:alt;ctrl ${righthalf}
+bind q:alt;ctrl ${topleft}
+bind e:alt;ctrl ${topright}
+bind z:alt;ctrl ${bottomleft}
+bind c:alt;ctrl ${bottomright}
