@@ -14,25 +14,38 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.fontSize": 12.5,
+  "editor.fontSize": 12,
   "editor.smoothScrolling": true,
-  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.iconTheme": "helium-icon-theme",
   "editor.formatOnSave": true,
   "workbench.startupEditor": "newUntitledFile",
   "eslint.autoFixOnSave": true,
-  "breadcrumbs.enabled": false,
+  "breadcrumbs.enabled": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "editor.renderControlCharacters": false,
   "editor.wordWrap": "on",
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": true,
   "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
-  "workbench.colorTheme": "Material Theme Ocean High Contrast",
+  "workbench.colorTheme": "Tomorrow Night Blue",
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#666553",
+    "editor.selectionHighlightBackground": "#666553"
+  },
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
   "files.associations": {
     "*.js": "javascriptreact"
-  }
+  },
+  "editor.formatOnPaste": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "editor.fontWeight": null
 }
