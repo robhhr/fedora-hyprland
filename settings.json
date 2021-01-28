@@ -26,6 +26,21 @@
   "editor.wordWrap": "on",
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": true,
+  "editor.tokenColorCustomizations": {
+    "[Tomorrow Night Blue]": {
+      "textMateRules": [
+        {
+          "name": "CSS Pseudo class",
+          "scope": [
+            "entity.other.attribute-name.pseudo-class.css.sass"
+          ],
+          "settings": {
+            "foreground": "#00FFFF"
+          }
+        }
+      ]
+    }
+  },
   "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
   "workbench.colorTheme": "Tomorrow Night Blue",
   "workbench.colorCustomizations": {
