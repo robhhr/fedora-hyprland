@@ -6,14 +6,18 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias less='less -R'
-
+alias htdocs='~/../../Applications/MAMP/htdocs'
+alias temp='~/Documents/temp'
 
 alias g='git'
 alias gA='git add -A'
+alias gU='git add -u'
 alias gc='git commit -m'
 alias gp='git push'
 alias gcb='git checkout -b'
 alias gs='git status'
+alias gsw='git switch'
+alias grb='git branch | grep -v "main" | xargs git branch -D'
 
 alias v='nvim'
 
