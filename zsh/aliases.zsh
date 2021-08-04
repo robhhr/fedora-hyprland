@@ -1,3 +1,4 @@
+
 alias ls='ls -G'                              # colorize `ls` output
 alias zshreload='source ~/.zshrc'             # reload ZSH
 alias shtop='sudo htop'                       # run `htop` with root rights
@@ -20,6 +21,9 @@ alias gsw='git switch'
 alias grb='git branch | grep -v "main" | xargs git branch -D'
 
 alias v='nvim'
+alias vlua='nvim ~/.config/nvim/lua/init.lua'
+alias vvim='nvim ~/.config/nvim/init.vim'
+alias aliases='nvim ~/aliases.zsh'
 
 alias rm='rm -i'                              # confirm removal
 alias cp='cp -i'                              # confirm copy
