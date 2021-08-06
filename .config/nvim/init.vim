@@ -1,2 +1,2 @@
-set runtimepath^=~/.config/nvim/lua
+set runtimepath^=~/.config/nvim/lua/init.lua
 
