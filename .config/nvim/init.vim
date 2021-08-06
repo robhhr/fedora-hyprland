@@ -1,2 +1,3 @@
-set runtimepath^=~/.config/nvim/lua/init.lua
+echo ">^.^<"
 
+set runtimepath^=~/.config/nvim/lua/init.lua
