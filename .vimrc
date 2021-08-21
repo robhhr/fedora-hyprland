@@ -8,15 +8,22 @@ endfunction
 
 call plug#begin("~/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc-snippets'
   Plug 'sts10/vim-pink-moon'
   Plug 'sainnhe/everforest'
+  Plug 'nightsense/plumber'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'scrooloose/nerdtree'
-  Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-tsserver'
+  Plug 'neoclide/coc-css'
+  Plug 'neoclide/coc-html'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
   Plug 'bagrat/vim-buffet'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+  Plug 'dense-analysis/ale'
 call plug#end()
 
 " == mappings ==
@@ -46,10 +53,11 @@ nmap <leader>0 <Plug>BuffetSwitch(10)
 if has('termiguicolors')
   set termguicolors
 endif
-" colorscheme pink-moon
+ colorscheme pink-moon
 set background=dark
-let g:everforest_background = 'hard'
-colorscheme everforest
+" colorscheme plumber-dark
+" let g:everforest_background = 'hard'
+" colorscheme everforest
 " nerdtree
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
@@ -58,6 +66,11 @@ let g:NERDTreeIgnore = []
 let g:NERDTreeStatusline = ''
 let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
 nnoremap <Leader><Tab> :NERDTreeToggle<CR>
 nnoremap <Leader>f :NERDTreeFocus<CR>
 nnoremap <Leader>! :Bw!<CR>
