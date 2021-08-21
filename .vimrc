@@ -15,15 +15,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-tsserver'
-  Plug 'neoclide/coc-css'
-  Plug 'neoclide/coc-html'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
   Plug 'bagrat/vim-buffet'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-  Plug 'dense-analysis/ale'
 call plug#end()
 
 " == mappings ==
@@ -75,7 +70,7 @@ nnoremap <Leader><Tab> :NERDTreeToggle<CR>
 nnoremap <Leader>f :NERDTreeFocus<CR>
 nnoremap <Leader>! :Bw!<CR>
 " autocomplete
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-intelephense']
 
 if executable('intelephense')
   augroup LspPHPIntelephense
