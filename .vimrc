@@ -1,4 +1,4 @@
-echo "🌈✨"
+echo "sukkhitree🌈✨"
 
 function! g:BuffetSetCustomColors()
   hi! BuffetCurrentBuffer cterm=NONE ctermbg=5 ctermfg=8 guibg=#00FF00 guifg=#000000
@@ -17,7 +17,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'bagrat/vim-buffet'
+  " Plug 'bagrat/vim-buffet'
   Plug 'ap/vim-css-color'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
@@ -27,6 +27,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'jiangmiao/auto-pairs'
   Plug 'yaegassy/coc-intelephense'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+  Plug 'mattn/emmet-vim'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
 " == mappings ==
@@ -38,17 +41,22 @@ noremap <leader>wq :wq<CR>
 noremap <leader>q :q<CR>
 noremap <leader>q! :q!<CR>
 
+" Buffers
+nnoremap <leader>1 :buffers<CR>:buffer<Space>
+nnoremap <leader>Q :bw!<CR>
+
 " Buffet
-nmap <leader>1 <Plug>BuffetSwitch(1)
-nmap <leader>2 <Plug>BuffetSwitch(2)
-nmap <leader>3 <Plug>BuffetSwitch(3)
-nmap <leader>4 <Plug>BuffetSwitch(4)
-nmap <leader>5 <Plug>BuffetSwitch(5)
-nmap <leader>6 <Plug>BuffetSwitch(6)
-nmap <leader>7 <Plug>BuffetSwitch(7)
-nmap <leader>8 <Plug>BuffetSwitch(8)
-nmap <leader>9 <Plug>BuffetSwitch(9)
-nmap <leader>0 <Plug>BuffetSwitch(10)
+" nmap <leader>1 <Plug>BuffetSwitch(1)
+" nmap <leader>2 <Plug>BuffetSwitch(2)
+" nmap <leader>3 <Plug>BuffetSwitch(3)
+" nmap <leader>4 <Plug>BuffetSwitch(4)
+" nmap <leader>5 <Plug>BuffetSwitch(5)
+" nmap <leader>6 <Plug>BuffetSwitch(6)
+" nmap <leader>7 <Plug>BuffetSwitch(7)
+" nmap <leader>8 <Plug>BuffetSwitch(8)
+" nmap <leader>9 <Plug>BuffetSwitch(9)
+" nmap <leader>0 <Plug>BuffetSwitch(10)
+" nnoremap <Leader>! :Bw!<CR>
 
 " Fugitive
 nmap <leader>g :Git
@@ -61,6 +69,9 @@ nmap <leader>gsw :Git switch<CR>
 
 " Surround
 nmap <leader>cs cs
+
+" FZF
+nmap <C-P> :FZF<CR>
 
 " == plugs config ==
 
@@ -94,40 +105,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 nnoremap <Leader><Tab> :NERDTreeToggle<CR>
 nnoremap <Leader>f :NERDTreeFocus<CR>
-nnoremap <Leader>! :Bw!<CR>
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " autocomplete
 let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
-
-if executable('intelephense')
-  augroup LspPHPIntelephense
-    au!
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'intelephense',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
-        \ 'whitelist': ['php'],
-        \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
-        \ 'workspace_config': {
-        \   'intelephense': {
-        \     'files': {
-        \       'maxSize': 1000000,
-        \       'associations': ['*.php', '*.phtml'],
-        \       'exclude': [],
-        \     },
-        \     'completion': {
-        \       'insertUseDeclaration': v:true,
-        \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
-        \       'triggerParameterHints': v:true,
-        \       'maxItems': 100,
-        \     },
-        \     'format': {
-        \       'enable': v:true
-        \     },
-        \   },
-        \ }
-        \})
-  augroup END
-endif
 
 " use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -161,6 +145,7 @@ set encoding=utf-8
 set mouse=a
 set cursorline
 set hidden
+set confirm
 set autoindent
 set shell=zsh
 set nobackup
@@ -182,3 +167,6 @@ function! OpenTerminal()
   resize 6
 endfunction
 nnoremap <Leader>` :call OpenTerminal()<CR>
+
+" fuzzy finder
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
