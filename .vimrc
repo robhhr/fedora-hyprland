@@ -18,6 +18,14 @@ call plug#begin("~/.vim/plugged")
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
   Plug 'bagrat/vim-buffet'
+  Plug 'ap/vim-css-color'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-fugitive'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'yaegassy/coc-intelephense'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
 
@@ -42,23 +50,39 @@ nmap <leader>8 <Plug>BuffetSwitch(8)
 nmap <leader>9 <Plug>BuffetSwitch(9)
 nmap <leader>0 <Plug>BuffetSwitch(10)
 
+" Fugitive
+nmap <leader>g :Git
+nmap <leader>gs :Git status<CR>
+nmap <leader>gb :Git branch<CR>
+nmap <leader>ga :Git add<CR>
+nmap <leader>gc :Git commit<CR>
+nmap <leader>gcb :Git checkout -b<CR>
+nmap <leader>gsw :Git switch<CR>
+
+" Surround
+nmap <leader>cs cs
+
 " == plugs config ==
 
 " colorscheme
 if has('termiguicolors')
   set termguicolors
 endif
- colorscheme pink-moon
-set background=dark
 " colorscheme plumber-dark
-" let g:everforest_background = 'hard'
 " colorscheme everforest
+colorscheme pink-moon
+set background=dark
+" let g:everforest_background = 'hard'
+
 " nerdtree
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeSortHiddenFirst = 1
 let g:NERDTreeIgnore = []
 let g:NERDTreeStatusline = ''
+let g:NERDTreeWinPos = "right"
+let g:NERDChristmasTree = 1
+let g:NERDTreeWinSize = 30
 let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
 let g:ale_fixers = {
@@ -66,11 +90,14 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 nnoremap <Leader><Tab> :NERDTreeToggle<CR>
 nnoremap <Leader>f :NERDTreeFocus<CR>
 nnoremap <Leader>! :Bw!<CR>
+
 " autocomplete
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-intelephense']
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
 if executable('intelephense')
   augroup LspPHPIntelephense
