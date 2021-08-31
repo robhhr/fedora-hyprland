@@ -1,35 +1,47 @@
 echo "sukkhitree🌈✨"
 
-function! g:BuffetSetCustomColors()
-  hi! BuffetCurrentBuffer cterm=NONE ctermbg=5 ctermfg=8 guibg=#00FF00 guifg=#000000
-endfunction
+set nocompatible
 
 " == plugs ==
 
 call plug#begin("~/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neoclide/coc-snippets'
-  Plug 'sts10/vim-pink-moon'
-  Plug 'sainnhe/everforest'
   Plug 'nightsense/plumber'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
-  " Plug 'bagrat/vim-buffet'
-  Plug 'ap/vim-css-color'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'nathanaelkane/vim-indent-guides'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'yaegassy/coc-intelephense'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   Plug 'mattn/emmet-vim'
   Plug 'airblade/vim-gitgutter'
+
+  " themes
+  Plug 'sts10/vim-pink-moon'
+  Plug 'sainnhe/everforest'
+  Plug 'jaredgorski/spacecamp'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'ayu-theme/ayu-vim'
+  
+  " visual
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'ap/vim-css-color'
+
+  " fzf finder
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+  " js/jsx/ts/graphql
+  Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'jparise/vim-graphql'
+
 call plug#end()
 
 " == mappings ==
@@ -42,7 +54,7 @@ noremap <leader>q :q<CR>
 noremap <leader>q! :q!<CR>
 
 " Buffers
-nnoremap <leader>1 :buffers<CR>:buffer<Space>
+
 nnoremap <leader>Q :bw!<CR>
 
 " Buffet
@@ -79,11 +91,10 @@ nmap <C-P> :FZF<CR>
 if has('termiguicolors')
   set termguicolors
 endif
-" colorscheme plumber-dark
-" colorscheme everforest
-colorscheme pink-moon
-set background=dark
-" let g:everforest_background = 'hard'
+colorscheme ayu
+syntax enable
+let ayucolor="dark"
+let g:airline_theme = 'ayu_dark'
 
 " nerdtree
 let g:NERDTreeShowHidden = 1
@@ -96,11 +107,6 @@ let g:NERDChristmasTree = 1
 let g:NERDTreeWinSize = 30
 let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\}
-let g:ale_fix_on_save = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 nnoremap <Leader><Tab> :NERDTreeToggle<CR>
@@ -137,10 +143,14 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
+let g:javascript_plugin_jsdoc = 1
+
 " == config ==
 packloadall
 
 " general
+filetype plugin indent on
+syntax on
 set encoding=utf-8
 set mouse=a
 set cursorline
@@ -152,6 +162,7 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
+set backspace=indent,eol,start
 set splitright
 set splitbelow
 set ruler laststatus=2 showcmd showmode
@@ -159,14 +170,20 @@ set number
 set nu
 set title
 set wrap breakindent
+
 " close terminal
 tnoremap <Esc> <C-\><C-n>
-" open terminal on ctrl+n
+
+" open terminal
 function! OpenTerminal()
   split term://zsh
   resize 6
 endfunction
 nnoremap <Leader>` :call OpenTerminal()<CR>
+
+" async syntax check
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " fuzzy finder
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
