@@ -1,21 +1,29 @@
+local settings = require('user-conf')
 local fn = vim.fn
 
 -- packer location
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+
+-- returns the require for use in `config` parameter of packer's use
+-- expects the name of the config file
+local function get_config(name)
+	return string.format('require("config/%s")', name)
+end
 
 -- install packer from github if is not in our system
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "installing packer close and reopen neovim..."
-  vim.cmd [[packadd packer.nvim]]
+	fn.system({
+		"git",
+		"clone",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer...")
+	vim.api.nvim_command("packadd packer.nvim")
 end
+
+-- initialize and configure packer
+local packer = require("packer")
 
 -- autocommand that reloads neovim when plugins.lua changes
 vim.cmd([[
@@ -25,34 +33,33 @@ vim.cmd([[
   augroup end
 ]])
 
--- use a protected require call (pcall) so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+packer.init({
+  -- enable profiling via :PackerCompile profile=true
+	enable = true,
+
+  -- the amount in ms that a plugins load time must be over for it to be included in the profile
+	threshold = 0,
+
+  -- limit the number of simultaneous jobs. nil means no limit. set to 20 in order to prevent PackerSync form being "stuck" -> https://github.com/wbthomason/packer.nvim/issues/746
+	max_jobs = 20,
+
+	-- Have packer use a popup window
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "rounded" })
+		end,
+	},
+})
 
 -- plugins
 
-return packer.startup(function(use)
-  -- have packer manage itself
-  use "wbthomason/packer.nvim"
-  
-   -- an implementation of the popup API from vim in neovim
-  use "nvim-lua/popup.nvim"
+packer.startup(function(use)
+	-- actual plugins list
+	use("wbthomason/packer.nvim")
 
-  -- colorschemes
-  use "lunarvim/darkplus.nvim"
+	use({ "windwp/nvim-autopairs", config = get_config("nvim-autopairs") })
 
-  -- tree-sitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    require('treesitter')
-  }
-
-  -- automatically set up config after cloning packer.nvim
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
+	if settings.theme == "catppuccino" then
+		use({ "catppuccin/nvim", as = "catppuccin", config = get_config("catppuccin") })
+	end
 end)
-
