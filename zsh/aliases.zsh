@@ -20,10 +20,10 @@ alias gsw='git switch'
 alias grb='git branch | grep -v "main" | xargs git branch -D'
 
 alias v='nvim'
-alias vlua='nvim ~/.config/nvim/lua/init.lua'
+alias vlua='nvim ~/nvim/init.lua'
 alias vvim='nvim ~/.config/nvim/init.vim'
 alias vvimrc='nvim ~/.vimrc'
-alias aliases='nvim ~/aliases.zsh'
+alias aliases='nvim ~/.zsh/aliases.zsh'
 
 alias rm='rm -i'                              # confirm removal
 alias cp='cp -i'                              # confirm copy
