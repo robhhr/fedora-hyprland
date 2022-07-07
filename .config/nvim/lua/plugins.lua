@@ -1,6 +1,13 @@
 local settings = require('user-conf')
 local fn = vim.fn
 
+-- call plugin configs (to change)
+require('config/nvim-autopairs')
+require('config/nvim-tree')
+require('config/bufferline')
+require('config/lualine')
+require('config/nvim-lspconfig')
+
 -- packer location
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
@@ -55,9 +62,21 @@ packer.init({
 
 packer.startup(function(use)
 	-- actual plugins list
-	use("wbthomason/packer.nvim")
+	use 'wbthomason/packer.nvim'
 
 	use({ "windwp/nvim-autopairs", config = get_config("nvim-autopairs") })
+
+	use 'kyazdani42/nvim-web-devicons'
+
+	use({ "kyazdani42/nvim-tree.lua", requires = {
+		'kyazdani42/nvim-web-devicons'
+	}, config = get_config("nvim-tree") })
+
+	use({ "akinsho/bufferline.nvim", requires = { 'kyazdani42/nvim-web-devicons' } })
+	
+	use 'moll/vim-bbye'
+
+	use({ "nvim-lualine/lualine.nvim", requires = { 'kyazdani42/nvim-web-devicons' } })
 
 	use 'ibhagwan/fzf-lua'
 	
@@ -68,7 +87,12 @@ packer.startup(function(use)
 	use 'shaunsingh/nord.nvim'
 	use 'junegunn/fzf'
 
+	-- lsp
+	use 'neovim/nvim-lspconfig'
+	use 'williamboman/nvim-lsp-installer'
+
 	use({'norcalli/nvim-colorizer.lua', cmd = 'ColorizerToggle', config = function()
 		require('colorizer').setup()	
 	end})
+
 end)
