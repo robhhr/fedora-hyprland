@@ -15,9 +15,15 @@ local options = {
   encoding = 'utf-8',       -- encoding
   cmdheight = 2,            -- better msg readability
   scrolloff = 8,            -- replace zz
-  relativenumber = true    -- relative
+  relativenumber = true,    -- relative
+  splitright = false,       -- force Y-splits to go below active
+  undofile = true,          -- enable persistent undo
+  numberwidth = 4,          -- number column width
+  wrap = false,             -- text wrap
+  sidescrolloff = 4,        -- horizontal view
+  guifont = "monospace:h17",
 }
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
+for i, j in pairs(options) do
+  vim.opt[i] = j
 end

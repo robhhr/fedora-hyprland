@@ -8,8 +8,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- normal
+keymap("n", "<leader>~", ":source ~/.config/nvim/init.vim", opts)
 -- -- open netrw
-keymap("n", "<leader><tab>", ":Vex<CR>", opts)
+keymap("n", "<leader><tab>", ":Vex!<CR> :vertical resize -30<CR>", opts)
 -- -- switch old/current file
 keymap("n", "<S-Tab>", "<C-6>", opts)
 -- -- fuzzy finder
