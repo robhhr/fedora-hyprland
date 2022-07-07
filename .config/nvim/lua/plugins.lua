@@ -59,7 +59,16 @@ packer.startup(function(use)
 
 	use({ "windwp/nvim-autopairs", config = get_config("nvim-autopairs") })
 
-	if settings.theme == "catppuccino" then
-		use({ "catppuccin/nvim", as = "catppuccin", config = get_config("catppuccin") })
-	end
+	use 'ibhagwan/fzf-lua'
+	
+	-- colorschemes
+	use 'tiagovla/tokyodark.nvim'
+	use 'shaeinst/roshnivim-cs'
+	use 'glepnir/zephyr-nvim'
+	use 'shaunsingh/nord.nvim'
+	use 'junegunn/fzf'
+
+	use({'norcalli/nvim-colorizer.lua', cmd = 'ColorizerToggle', config = function()
+		require('colorizer').setup()	
+	end})
 end)
