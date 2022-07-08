@@ -87,8 +87,14 @@ packer.startup(function(use)
 	use 'shaunsingh/nord.nvim'
 	use 'junegunn/fzf'
 
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) 
+
 	-- lsp
-	use 'neovim/nvim-lspconfig'
+	use({ "neovim/nvim-lspconfig", requires = {
+		"williamboman/nvim-lsp-installer",
+		"onsails/lspkind-nvim", config = get_config("nvim-lspconfig")
+	} })
+	use 'onsails/lspkind-nvim'
 	use 'williamboman/nvim-lsp-installer'
 
 	use({'norcalli/nvim-colorizer.lua', cmd = 'ColorizerToggle', config = function()
