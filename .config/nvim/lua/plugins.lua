@@ -7,6 +7,8 @@ require('config/nvim-tree')
 require('config/bufferline')
 require('config/lualine')
 require('config/nvim-lspconfig')
+require('config/nvim-treesitter')
+require('config/cmp')
 
 -- packer location
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -19,7 +21,7 @@ end
 
 -- install packer from github if is not in our system
 if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({
+	PACKER_BOOTSTRAP = fn.system({
 		"git",
 		"clone",
 		"https://github.com/wbthomason/packer.nvim",
@@ -87,18 +89,36 @@ packer.startup(function(use)
 	use 'shaunsingh/nord.nvim'
 	use 'junegunn/fzf'
 
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) 
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = get_config('nvim-treesitter') }) 
 
 	-- lsp
 	use({ "neovim/nvim-lspconfig", requires = {
 		"williamboman/nvim-lsp-installer",
 		"onsails/lspkind-nvim", config = get_config("nvim-lspconfig")
 	} })
+
 	use 'onsails/lspkind-nvim'
 	use 'williamboman/nvim-lsp-installer'
+
+	use({ 'hrsh7th/nvim-cmp', requires = {
+		'onsails/lspkind-nvim',
+		'hrsh7th/cmp-nvim-lsp',
+		'saadparwaiz1/cmp_luasnip',
+		'l3mon4d3/luasnip'
+		},
+		config = get_config('config')
+	})
+
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'saadparwaiz1/cmp_luasnip'
+	use 'l3mon4d3/luasnip'
 
 	use({'norcalli/nvim-colorizer.lua', cmd = 'ColorizerToggle', config = function()
 		require('colorizer').setup()	
 	end})
 
 end)
+
+if PACKER_BOOTSTRAP then
+	require('packer').sync()
+end

@@ -1,5 +1,6 @@
 local lsp_installer = require("nvim-lsp-installer")
 local lspkind = require("lspkind")
+local lspconfig = require("lspconfig")
 
 local map = vim.api.nvim_buf_set_keymap
 
@@ -70,3 +71,11 @@ vim.diagnostic.config({
     border = "rounded",
   }
 })
+
+-- lspconfig.util.default_config = vim.tbl_deep_extend(
+--   'force',
+--   lspconfig.util.default_config,
+--   settings
+-- )
+
+-- lspconfig.intelephense.setup({})
