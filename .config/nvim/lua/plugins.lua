@@ -66,8 +66,6 @@ packer.startup(function(use)
 	-- actual plugins list
 	use 'wbthomason/packer.nvim'
 
-	use({ "windwp/nvim-autopairs", config = get_config("nvim-autopairs") })
-
 	use 'kyazdani42/nvim-web-devicons'
 
 	use({ "kyazdani42/nvim-tree.lua", requires = {
@@ -76,7 +74,6 @@ packer.startup(function(use)
 
 	use({ "akinsho/bufferline.nvim", requires = { 'kyazdani42/nvim-web-devicons' } })
 	
-	use 'moll/vim-bbye'
 
 	use({ "nvim-lualine/lualine.nvim", requires = { 'kyazdani42/nvim-web-devicons' } })
 
@@ -92,10 +89,14 @@ packer.startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = get_config('nvim-treesitter') }) 
 
 	-- lsp
+	use 'williamboman/nvim-lsp-installer'
 	use({ "neovim/nvim-lspconfig", requires = {
 		"williamboman/nvim-lsp-installer",
 		"onsails/lspkind-nvim", config = get_config("nvim-lspconfig")
 	} })
+	
+	-- lsp addons
+	use 'jose-elias-alvarez/typescript.nvim'
 
 	use 'onsails/lspkind-nvim'
 	use 'williamboman/nvim-lsp-installer'
@@ -106,8 +107,8 @@ packer.startup(function(use)
 		'hrsh7th/cmp-nvim-lsp',
 		'saadparwaiz1/cmp_luasnip',
 		'l3mon4d3/luasnip'
-		},
-		config = get_config('config')
+	},
+	config = get_config('cmp')
 	})
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
@@ -120,7 +121,10 @@ packer.startup(function(use)
 	use({'norcalli/nvim-colorizer.lua', cmd = 'ColorizerToggle', config = function()
 		require('colorizer').setup()	
 	end})
+	use 'l3mon4d3/luasnip'
 
+	-- general
+	use 'moll/vim-bbye'
 end)
 
 if PACKER_BOOTSTRAP then
