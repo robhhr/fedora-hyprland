@@ -99,6 +99,7 @@ packer.startup(function(use)
 
 	use 'onsails/lspkind-nvim'
 	use 'williamboman/nvim-lsp-installer'
+	-- use 'jose-elias-alvarez/null-ls.nvim'
 
 	use({ 'hrsh7th/nvim-cmp', requires = {
 		'onsails/lspkind-nvim',
@@ -108,10 +109,13 @@ packer.startup(function(use)
 		},
 		config = get_config('config')
 	})
-
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'l3mon4d3/luasnip'
+	use 'rafamadriz/friendly-snippets'
 
 	use({'norcalli/nvim-colorizer.lua', cmd = 'ColorizerToggle', config = function()
 		require('colorizer').setup()	
