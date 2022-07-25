@@ -117,6 +117,7 @@ packer.startup(function(use)
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'l3mon4d3/luasnip'
 	use 'rafamadriz/friendly-snippets'
+	use 'windwp/nvim-autopairs'
 
 	use({'norcalli/nvim-colorizer.lua', cmd = 'ColorizerToggle', config = function()
 		require('colorizer').setup()	
