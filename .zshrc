@@ -7,7 +7,7 @@ fi
 
 prompt_dir() {
   #prompt_segment blue $CURRENT_FG '%~'
-  prompt_segment blue $CURRENT_FG '%2~'
+  #prompt_segment blue $CURRENT_FG '%2~'
 }
 alias weather="curl v2.wttr.in/${1:-Vancouver} --silent | less -S -R -#3"
 # prompt_context() {
