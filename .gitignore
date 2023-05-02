@@ -1,5 +1,6 @@
 .DS_Store
 gatsby
+configstore
 helix/
 iterm2
 karabiner
