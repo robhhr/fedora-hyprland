@@ -1,6 +1,6 @@
 local M = {}
 
-vim.cmd('colorscheme rvcs')
+vim.cmd('colorscheme earlysummer')
 
 -- Toggle global status line
 M.global_statusline = true
