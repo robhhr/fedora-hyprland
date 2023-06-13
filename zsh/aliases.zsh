@@ -8,6 +8,7 @@ alias ....='cd ../../..'
 alias less='less -R'
 alias htdocs='~/../../Applications/MAMP/htdocs'
 alias temp='~/Documents/temp'
+alias wpl='~/Local Sites'
 
 alias g='git'
 alias gA='git add -A'
