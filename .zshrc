@@ -28,7 +28,7 @@ export ZSH="/Users/robhhr/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k"
 # ZSH_THEME="theunraveler"
 # Android SDK
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -94,7 +94,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions shrink-path)
+plugins=(git zsh-autosuggestions shrink-path nvm)
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
@@ -123,8 +123,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /Users/robhhr/.config/.zsh/aliases.zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source /Users/robhhr/.config/zsh/aliases.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
