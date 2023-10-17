@@ -15,8 +15,8 @@ return {
   check_for_updates_interval_seconds = 259200,
   color_scheme = colorschemes[5],
   colors = {
-    cursor_bg = '#52ad70',
-    cursor_fg = 'black',
+    cursor_bg = 'rgb(231, 76, 109)',
+    cursor_fg = 'white',
     selection_bg = '#fffacd',
     selection_fg = 'black',
     tab_bar = {
@@ -48,9 +48,13 @@ return {
     font_size = 10
   },
   window_padding = {
-    left = 30,
-    right = 30,
-    top = 30,
-    bottom = 30
+    left = 5,
+    right = 5,
+    top = 5,
+    bottom = 0
+    -- left = 30,
+    -- right = 30,
+    -- top = 30,
+    -- bottom = 30
   }
 }
