@@ -35,7 +35,7 @@ return {
     }
   },
   default_cursor_style = 'SteadyBar',
-  font = wezterm.font 'JetBrains Mono',
+  font = wezterm.font('JetBrains Mono', { weight = 'Medium' }),
   font_size = 14,
   hide_tab_bar_if_only_one_tab = true,
   line_height = 1.05,
