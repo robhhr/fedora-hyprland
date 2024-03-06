@@ -1,0 +1,13 @@
+color = ''
+project-name = 'default'
+[default]
+account_id = 'acct_1IlWL8KVV1YQmAdC'
+device_name = 'Robertos-iMac.local'
+display_name = 'BIIAB Qualifications Limited'
+live_mode_api_key = 'rk_live_***********************************************************************************************EjSh'
+live_mode_key_expires_at = '2024-05-09'
+live_mode_pub_key = 'pk_live_51IlWL8KVV1YQmAdCB0s1uLUXgiJGS1HzYIDP2uY25J6qUvupyRpp9rl6H2zGb3UhH8cPWCfts4Te3FeLJpdRd3LQ00RbA81ecT'
+test_mode_api_key = 'rk_test_51IlWL8KVV1YQmAdCaRBDxwzyJdGYlGTFKe8NYWhPGHSsoaQtx51pd56oyS1w472Tm7VfNZSG4rTFSHEfXCUXaeAy00f7xIz961'
+test_mode_key_expires_at = '2024-05-09'
+test_mode_pub_key = 'pk_test_51IlWL8KVV1YQmAdCFV6ZWzK9Sn6VNngxATFEN7PgcTbAjXixN8OQND3Vl9pFe6IKeeQRm9OrjUeV0bhspE6KrkVf00lgh1dstQ'
+
