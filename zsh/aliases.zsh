@@ -25,6 +25,7 @@ alias nconfig='nvim ~/.config/nvim/lua/'
 alias nzsh='nvim ~/.zshrc'
 alias aliases='nvim ~/.zsh/aliases.zsh'
 alias e='exit'
+alias t='tmux'
 
 alias rm='rm -i'                              # confirm removal
 alias cp='cp -i'                              # confirm copy
