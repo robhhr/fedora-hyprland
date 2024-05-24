@@ -12,6 +12,8 @@ vi_mode_style = { shape = "Block" }
 [keyboard]
 bindings = [
   { key = "V", mods = "Control", action = "ToggleViMode" },
+  { key = "PageUp", mods = "Alt", action = "ScrollPageUp" },
+  { key = "PageDown", mods = "Alt", action = "ScrollPageDown" },
 ]
 
 [window]
