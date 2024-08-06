@@ -15,6 +15,7 @@ alias gA='git add -A'
 alias gU='git add -u'
 alias gc='git commit -m'
 alias gp='git push'
+alias gpo='git pull origin'
 alias gcb='git checkout -b'
 alias gs='git status'
 alias gsw='git switch'
@@ -26,6 +27,7 @@ alias nzsh='nvim ~/.zshrc'
 alias aliases='nvim ~/.zsh/aliases.zsh'
 alias e='exit'
 alias t='tmux'
+alias r='ranger'
 
 alias rm='rm -i'                              # confirm removal
 alias cp='cp -i'                              # confirm copy
