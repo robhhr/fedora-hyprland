@@ -1,67 +1,50 @@
+#!/bin/bash
 # reference: https://felixkratz.github.io/SketchyBar/
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
+source "$CONFIG_DIR/colors.sh"
+ITEM_DIR="$CONFIG_DIR/items"
 
 # bar appearance
-sketchybar --bar position=top height=25 blur_radius=30
+sketchybar --bar height=25        \
+                 blur_radius=30   \
+                 position=top     \
+                 sticky=off       \
+                 padding_left=10  \
+                 padding_right=10 \
+                 color=$BAR_COLOR
 
 # change defaults
-default=(
-  padding_left=5
-  padding_right=5
-  icon.font="Hack Nerd Font:Bold:17.0"
-  label.font="Hack Nerd Font:Bold:14.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
-  icon.padding_left=4
-  icon.padding_right=4
-  label.padding_left=4
-  label.padding_right=4
-)
-sketchybar --default "${default[@]}"
+sketchybar --default icon.font="JetBrainsMono Nerd Font:Bold:17.0"  \
+                     icon.color=$WHITE                              \
+                     label.font="JetBrainsMono Nerd Font:Bold:14.0" \
+                     label.color=$WHITE                             \
+                     background.color=$ITEM_BG_COLOR       \
+                     background.corner_radius=5            \
+                     background.height=24                  \
+                     padding_left=5                                 \
+                     padding_right=5                                \
+                     label.padding_left=4                           \
+                     label.padding_right=4                          \
+                     label.padding_right=10                \
+                     icon.padding_left=4                            \
+                     icon.padding_left=10                  \
+                     icon.padding_right=4
 
 # mission control spaces
-SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
-for i in "${!SPACE_ICONS[@]}"
-do
-  sid="$(($i+1))"
-  space=(
-    space="$sid"
-    icon="${SPACE_ICONS[i]}"
-    icon.padding_left=7
-    icon.padding_right=7
-    background.color=0x40ffffff
-    background.corner_radius=5
-    background.height=25
-    label.drawing=ofF
-    script="$PLUGIN_DIR/space.sh"
-    click_script="yabai -m space --focus $sid"
-  )
-  sketchybar --add space space."$sid" left --set space."$sid" "${space[@]}"
-done
 
 # add left items
-sketchybar --add item chevron left \
-           --set chevron icon= label.drawing=off \
-           --add item front_app left \
-           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
+source $ITEM_DIR/spaces.sh
+source $ITEM_DIR/front_app.sh
+
+# right side of notch items
+source $ITEM_DIR/media.sh
 
 # add right items
-sketchybar --add item clock right \
-           --set clock update_freq=60 script="$PLUGIN_DIR/clock.sh" \
-           --add item volume right \
-           --set volume script="$PLUGIN_DIR/volume.sh" \
-           --subscribe volume volume_change \
-           --add item battery right \
-           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change
-
-# add brackets
-# # right bracket
-sketchybar --add bracket right clock volume battery
-           --set right background.color=0xff242424
-
+source $ITEM_DIR/calendar.sh
+source $ITEM_DIR/volume.sh
+source $ITEM_DIR/battery.sh
+source $ITEM_DIR/cpu.sh
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
