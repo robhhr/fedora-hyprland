@@ -1,40 +1,38 @@
 #!/bin/bash
-# reference: https://felixkratz.github.io/SketchyBar/
 
-PLUGIN_DIR="$CONFIG_DIR/plugins"
+source "$CONFIG_DIR/globals.sh"
 source "$CONFIG_DIR/colors.sh"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
 ITEM_DIR="$CONFIG_DIR/items"
 
 # bar appearance
-sketchybar --bar height=25        \
-                 blur_radius=30   \
-                 position=top     \
-                 sticky=off       \
-                 padding_left=10  \
+sketchybar --bar height=25 \
+                 blur_radius=30 \
+                 y_offset=5 \
+                 position=top \
+                 sticky=off \
+                 padding_left=15 \
                  padding_right=10 \
                  color=$BAR_COLOR
 
 # change defaults
-sketchybar --default icon.font="JetBrainsMono Nerd Font:Bold:17.0"  \
-                     icon.color=$WHITE                              \
-                     label.font="JetBrainsMono Nerd Font:Bold:14.0" \
-                     label.color=$WHITE                             \
-                     background.color=$ITEM_BG_COLOR       \
-                     background.corner_radius=5            \
-                     background.height=24                  \
-                     padding_left=5                                 \
-                     padding_right=5                                \
-                     label.padding_left=4                           \
-                     label.padding_right=4                          \
-                     label.padding_right=10                \
-                     icon.padding_left=4                            \
-                     icon.padding_left=10                  \
-                     icon.padding_right=4
+sketchybar --default icon.font="JetBrainsMono Nerd Font:Bold:$ICON_FONT_SIZE.0" \
+                     label.font="JetBrainsMono Nerd Font:Bold:$FONT_SIZE.0" \
+                     label.color=$WHITE \
+                     background.color=$ITEM_BG_COLOR \
+                     background.corner_radius=5 \
+                     background.height=24 \
+                     padding_left=10 \
+                     padding_right=10 \
+                     label.padding_left=4 \
+                     label.padding_right=4 \
+                     label.padding_right=10 \
+                     icon.padding_left=4 \
 
 # mission control spaces
-
 # add left items
-source $ITEM_DIR/spaces.sh
+# source $ITEM_DIR/os.sh
+# source $ITEM_DIR/spaces.sh
 source $ITEM_DIR/front_app.sh
 
 # right side of notch items
@@ -42,6 +40,7 @@ source $ITEM_DIR/media.sh
 
 # add right items
 source $ITEM_DIR/calendar.sh
+source $ITEM_DIR/vpn.sh
 source $ITEM_DIR/volume.sh
 source $ITEM_DIR/battery.sh
 # source $ITEM_DIR/cpu.sh
