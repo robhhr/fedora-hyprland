@@ -13,7 +13,7 @@ elif [[ $IP_ADDRESS != "" ]]; then
     ICON_COLOR=$WHITE
 else
     ICON="󰖪"
-    ICON_COLOR=0xff00ff00
+    ICON_COLOR=$NETWORK_RED
 fi
 
 sketchybar --set $NAME icon="${ICON}" icon.color="${ICON_COLOR}" label="${IP_ADDRESS}"
