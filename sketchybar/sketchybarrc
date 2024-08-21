@@ -22,10 +22,6 @@ sketchybar --default icon.font="JetBrainsMono Nerd Font:Bold:$ICON_FONT_SIZE.0" 
                      background.color=$BG_COLOR \
                      background.corner_radius=5 \
                      background.height=24 \
-                     padding_left=10 \
-                     padding_right=10 \
-                     icon.padding_left=4 \
-                     icon.padding_right=4 \
                      background.border_width=1 \
                      background.border_color=$BG_LABEL_COLOR_ALT \
 
