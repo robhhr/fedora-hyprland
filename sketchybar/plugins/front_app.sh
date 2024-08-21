@@ -6,6 +6,6 @@
 # https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
 
 if [ "$SENDER" = "front_app_switched" ]; then
-    sketchybar --set $NAME label="$INFO" label.color="0xff000000" icon="$($CONFIG_DIR/plugins/icon_map_fn.sh "$INFO")" icon.color="0xff000000"
+    sketchybar --set $NAME label="$INFO" icon="$($CONFIG_DIR/plugins/icon_map_fn.sh "$INFO")"
 fi
 

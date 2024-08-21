@@ -10,7 +10,7 @@ yabai -m config bottom_padding 4
 yabai -m config right_padding 4
 yabai -m config left_padding 4
 
-yabai -m config external_bar main:20:0
+yabai -m config external_bar main:35:0
 
 # disable yabai for specific apps/windows
 yabai -m rule --add app="Slack$" manage=off
