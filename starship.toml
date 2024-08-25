@@ -1,0 +1,27 @@
+# inserts a blank line between shell prompts
+add_newline = false
+
+# replace the '❯' symbol in the prompt with '➜'
+[character]
+success_symbol = '[](bold yellow) '
+error_symbol = '[](bold red) '
+disabled = false
+
+# git display options
+[git_metrics]
+disabled = false
+
+# os
+[os]
+format = "[($symbol$version)]($style) "
+style = "bold yellow"
+disabled = true
+
+[os.symbols]
+Macos = " "
+
+[shell]
+zsh_indicator = ' '
+style = 'yellow bold'
+disabled = true
+
