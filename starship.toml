@@ -3,8 +3,8 @@ add_newline = false
 
 # replace the '❯' symbol in the prompt with '➜'
 [character]
-success_symbol = '[](bold yellow) '
-error_symbol = '[](bold red) '
+success_symbol = '[🌻](bold yellow) '
+error_symbol = '[🟥](bold red) '
 disabled = false
 
 # git display options
