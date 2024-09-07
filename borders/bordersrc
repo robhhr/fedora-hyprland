@@ -1,10 +1,14 @@
 #!/bin/bash
+# alt colors
+# 0xffff204e
+# 0xffb6fffa
+# 0xffcc241d
 
 options=(
 	style=round
 	width=10.0
 	hidpi=off
-	active_color=0xffffff00
+	active_color=0xfffb4934
 	inactive_color=0xff414550
 )
 
