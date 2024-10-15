@@ -4,7 +4,6 @@ alias zshreload='source ~/.zshrc'
 alias grep='grep --color=auto'
 alias less='less -R'
 alias e='exit'
-alias t='tmux'
 
 # paths
 alias ..='cd ..'
@@ -27,10 +26,15 @@ alias gs='git status'
 alias gsw='git switch'
 
 # nvim
-alias n='nvim'
+alias n='nvim .'
 alias nconfig='nvim ~/.config/nvim/'
 alias nzsh='nvim ~/.zshrc'
 alias aliases='nvim ~/.zsh/aliases.zsh'
+
+# tmux
+alias t='tmux'
+alias tks='tmux kill-server'
+alias tx='tmuxinator'
 
 # misc
 alias weather="curl v2.wttr.in/${1:-Vancouver} --silent | less -S -R -#3"
