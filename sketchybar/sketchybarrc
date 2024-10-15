@@ -35,7 +35,7 @@ sketchybar --default icon.font="JetBrainsMono Nerd Font:Bold:$ICON_FONT_SIZE.0" 
 source $ITEM_DIR/front_app.sh
 
 # right side of notch items
-source $ITEM_DIR/media.sh
+# source $ITEM_DIR/media.sh
 
 # add right items
 source $ITEM_DIR/calendar.sh
