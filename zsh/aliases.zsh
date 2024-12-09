@@ -1,5 +1,5 @@
 # actions
-alias ls='lsd -lah'
+# alias ls='lsd -lah'
 alias zshreload='source ~/.zshrc'
 alias grep='grep --color=auto'
 alias less='less -R'
