@@ -13,4 +13,7 @@ github-copilot/
 gh/
 stripe/
 lazygit/
+/zed/*
+!/zed/settings.json
+/htop/
 
