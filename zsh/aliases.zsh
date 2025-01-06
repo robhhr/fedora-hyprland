@@ -26,8 +26,8 @@ alias gs='git status'
 alias gsw='git switch'
 
 # nvim
-alias n='nvim .'
-alias nconfig='nvim ~/.config/nvim/'
+alias n='nvim'
+alias nconf='nvim ~/.config/nvim/'
 alias nzsh='nvim ~/.zshrc'
 alias aliases='nvim ~/.zsh/aliases.zsh'
 
