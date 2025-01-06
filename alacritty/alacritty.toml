@@ -4,7 +4,7 @@ import = [
 
 [shell]
   program = "/bin/zsh"
-  args = ["--login", "-c", "ranger"]
+  # args = ["--login", "-c", "ranger"]
 
 [font]
 normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
