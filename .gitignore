@@ -1,19 +1,4 @@
-.DS_Store
-gatsby
-configstore
-helix/
-iterm2
-karabiner
-kitty
-lsd
-yarn/
-node_modules/
-qBittorrent/
-github-copilot/
-gh/
-stripe/
-lazygit/
-/zed/*
-!/zed/settings.json
-/htop/
+*
+!/alacritty/
+!/alacritty/**
 
