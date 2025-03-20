@@ -1,2 +1,3 @@
-# dotfiles
-small collection of my personal config files
+config files for gnu/linux
+
+neovim config [repository](https://github.com/robhhr/nvim-world)
