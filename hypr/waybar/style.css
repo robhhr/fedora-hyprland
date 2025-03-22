@@ -1,85 +1,109 @@
+@define-color bg_color #282828;
+@define-color fg_color #ebdbb2;
+@define-color fg_alt_color #fbf1c7;
+@define-color accent_color #ff2453;
+
 * {
   border: none;
-  border-radius: 0;
-  font-family: "Ubuntu Nerd Font";
-  font-size: 13px;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 12px;
   min-height: 0;
 }
 
 window#waybar {
-  background: transparent;
-  color: white;
+  background-color: transparent;
+  border-radius: 8px;
+  margin: 5px 10px;
+  padding: 0 10px;
+  box-shadow: none;
 }
-
-#window {
-  font-weight: bold;
-  font-family: "Ubuntu";
-}
-
-/*
-#workspaces {
-    padding: 0 5px;
-}
-*/
 
 #workspaces button {
-  padding: 0 5px;
-  background: transparent;
-  color: white;
-  border-top: 2px solid transparent;
+  padding: 0 6px;
+  color: @fg_color;
 }
 
 #workspaces button.focused {
-  color: #c9545d;
-  border-top: 2px solid #c9545d;
+  color: @accent_color;
 }
 
-#mode {
-  background: #64727D;
-  border-bottom: 3px solid white;
+#workspaces button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
 }
 
-#clock,
-#battery,
+#window {
+  color: @fg_alt_color;
+}
+
+#custom-spotify,
+#pulseaudio,
+#network,
 #cpu,
 #memory,
-#network,
-#pulseaudio,
-#custom-spotify,
+#battery,
 #tray,
-#mode {
-  padding: 0 3px;
-  margin: 0 2px;
-}
-
 #clock {
-  font-weight: bold;
+  padding: 0 8px;
+  margin: 4px 2px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: @fg_alt_color;
+  border-radius: 5px;
+  border: 1px solid rgba(251, 241, 199, 0.3);
 }
 
-#battery icon {
-  color: red;
+#battery.warning {
+  color: #d79921;
 }
 
-@keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: black;
-  }
+#battery.critical {
+  color: #cc241d;
 }
 
-#battery.warning:not(.charging) {
-  color: white;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#pulseaudio.muted {
+  color: #cc241d;
 }
 
-#network.disconnected {
-  background: #f53c3c;
+tooltip {
+  background-color: @bg_color;
+  color: @fg_color;
+  border-radius: 8px;
 }
 
-#custom-spotify {
-  color: rgb(102, 220, 105);
+#pulseaudio.group,
+#network.group,
+#battery.group {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  margin: 4px 0;
+  padding: 0 6px;
+  border: 1px solid rgba(251, 241, 199, 0.3);
+}
+
+/* Remove extra margins between grouped items */
+#pulseaudio.group {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 0;
+  border-right: none;
+}
+
+#network.group {
+  border-radius: 0;
+  margin-right: 0;
+  border-right: none;
+}
+
+#custom-network {
+  color: #fbf1c7;
+  padding: 0 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  border: 1px solid rgba(251, 241, 199, 0.3);
+  margin: 4px;
+}
+
+#battery.group {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }

@@ -4,30 +4,21 @@
   "height": 24, // Waybar height
     // "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
-    "sway/workspaces": {
-      "disable-scroll": true,
-      "all-outputs": false,
-      "format": "{icon}",
-      "format-icons": {
-        "1:web": "",
-        "2:code": "",
-        "3:term": "",
-        "4:work": "",
-        "5:music": "",
-        "6:docs": "",
-        "urgent": "",
-        "focused": "",
-        "default": ""
-      }
+    "modules-left": ["hyprland/workspaces"],
+    // "modules-center": ["hyprland/window"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "custom/network", "battery", "tray", "clock"],
+    "hyprland/workspaces": {
+      "ignore-workspaces": ["order66"]
     },
-    "sway/mode": {
-      "format": "<span style=\"italic\">{}</span>"
+    "hyprland/window": {
+      "format": "{title}",
+      "max-length": 50,
+      "ellipsize": "end",
+      "scroll": false,
+      "separate-outputs": true,
+      "on-click": "wofi --show window",
     },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
@@ -40,9 +31,9 @@
       "format": "{}% "
     },
     "battery": {
-      "bat": "BAT0",
+      "bat": "BAT1",
       "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
       },
@@ -57,6 +48,14 @@
         "format-wifi": "{essid} {bandwidthDownBytes} ({signalStrength}%) ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠"
+    },
+    "custom/network": {
+      "format": "{}",
+      "exec": "~/.config/hypr/scripts/waybar/network.sh",
+      "interval": 10,
+      "return-type": "stdout",
+      "on-click": "nmcli connection up wg0-mullvad",
+      "on-click-right": "nmcli connection down wg0-mullvad"
     },
     "pulseaudio": {
         //"scroll-step": 1,
@@ -73,13 +72,6 @@
           "default": ["", ""]
         },
         "on-click": "pavucontrol"
-    },
-    "custom/spotify": {
-      "format": " {}",
-      "max-length": 40,
-      "interval": 30, // Remove this if your script is endless and write in loop
-      "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
-      "exec-if": "pgrep spotify"
     }
 }
 
