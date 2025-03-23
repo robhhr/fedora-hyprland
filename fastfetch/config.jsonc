@@ -1,0 +1,36 @@
+{
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "kernel",
+    "uptime",
+    "packages",
+    "de",
+    "wm",
+    "shell",
+    "terminal",
+    {
+      "type": "editor",
+      "key": "IDE"
+    },
+    "cpu",
+    "gpu",
+    "memory",
+    {
+      "type": "disk",
+      "key": "Disk",
+      "format": "{size-used} / {size-total} ({size-percentage})",
+    },
+    {
+      "type": "battery",
+      "key": "Battery",
+      "format": "{capacity} | {time-hours}hrs {time-minutes}min",
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "circle"
+    },
+  ],
+}

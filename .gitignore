@@ -7,3 +7,6 @@
 
 !/dunst/
 !/dunst/**
+
+!/fastfetch/
+!/fastfetch/**
