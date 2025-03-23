@@ -1,12 +1,5 @@
 #!/bin/bash
 
-for i in {1..10}; do
-  if pgrep -x dunst >/dev/null; then
-    break
-  fi
-  sleep 0.5
-done
-
 for i in {1..5}; do
   JSON=$(mullvad status --json)
 
@@ -25,6 +18,6 @@ for i in {1..5}; do
   sleep 1
 done
 
-notify-send "VPN" "⚠️ Mullvad is not connected!"
+notify-send "mullvad" "mullvad not connected ⚠️"
 exit 1
 
