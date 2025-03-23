@@ -7,6 +7,8 @@
   border: none;
   font-family: "JetBrainsMono Nerd Font", monospace;
   font-size: 12px;
+  margin-left: 3px;
+  margin-right: 5px;
   min-height: 0;
 }
 
@@ -19,17 +21,26 @@ window#waybar {
 }
 
 #workspaces button {
-  padding: 0 6px;
+  background-color: #1d2021;
+  border-color: rgba(251, 241, 199, .8);
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
   color: @fg_color;
+  font-weight: bold;
+  padding: 0;
+  padding-left: 5px;
+  padding-right: 0;
 }
 
-#workspaces button.focused {
-  color: @accent_color;
+#workspaces button.active {
+  background-color: #cc241d;
+  color: #ebdbb2;
 }
 
 #workspaces button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
+  background: #1d2021;
+  color: #ebdbb2;
 }
 
 #window {
@@ -39,29 +50,37 @@ window#waybar {
 #custom-spotify,
 #pulseaudio,
 #network,
-#cpu,
 #memory,
 #battery,
 #tray,
 #clock {
-  padding: 0 8px;
+  padding: 0 6px;
   margin: 4px 2px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #1d2021;
   color: @fg_alt_color;
   border-radius: 5px;
-  border: 1px solid rgba(251, 241, 199, 0.3);
+  border-color: rgba(251, 241, 199, .8);
+  border-style: solid;
+  border-width: 1px;
 }
 
 #battery.warning {
-  color: #d79921;
+  border-color: #fabd2f;
+  color: #fabd2f;
 }
 
 #battery.critical {
   color: #cc241d;
 }
 
+#battery.charging {
+  border-color: #d79921;
+  color: #d79921;
+}
+
 #pulseaudio.muted {
-  color: #cc241d;
+  border-color: #fb4934;
+  color: #fb4934;
 }
 
 tooltip {
@@ -77,7 +96,9 @@ tooltip {
   border-radius: 5px;
   margin: 4px 0;
   padding: 0 6px;
-  border: 1px solid rgba(251, 241, 199, 0.3);
+  border-color: rgba(251, 241, 199, 0.3);
+  border-style: solid;
+  border-width: 1px;
 }
 
 /* Remove extra margins between grouped items */
@@ -88,19 +109,34 @@ tooltip {
   border-right: none;
 }
 
-#network.group {
-  border-radius: 0;
-  margin-right: 0;
-  border-right: none;
+#tray {
+  padding: 0 4px;
+}
+
+#memory,
+#network {
+  padding-right: 10px;
+}
+
+#network.disconnected {
+  border-color: #fb4934;
+  color: #fb4934;
 }
 
 #custom-network {
-  color: #fbf1c7;
   padding: 0 8px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
-  border: 1px solid rgba(251, 241, 199, 0.3);
   margin: 4px;
+  border-radius: 5px;
+}
+
+#custom-network.vpn-connected {
+  color: #b8bb26;
+  border: 1px solid #b8bb26;
+}
+
+#custom-network.vpn-disconnected {
+  color: #fb4934;
+  border: 1px solid #fb4934;
 }
 
 #battery.group {

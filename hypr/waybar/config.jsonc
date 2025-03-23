@@ -4,11 +4,23 @@
   "height": 24, // Waybar height
     // "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["group/leftWrapper"],
     // "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "custom/network", "battery", "tray", "clock"],
+    "modules-right": ["tray", "group/rightWrapper"],
+    "group/leftWrapper": {
+      "orientation": "horizontal",
+      "modules": ["hyprland/workspaces"]
+    },
+    "group/rightWrapper": {
+      "orientation": "horizontal",
+      "modules": ["pulseaudio", "network", "memory", "custom/network", "battery", "clock"]
+    },
     "hyprland/workspaces": {
+      "format": "{name}",
       "ignore-workspaces": ["order66"]
+      // "persistent-workspaces": {
+      //   "*": 3,
+      // }
     },
     "hyprland/window": {
       "format": "{title}",
@@ -22,13 +34,10 @@
         "spacing": 10
     },
     "clock": {
-      "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-      "format": "{usage}% "
+      "format-alt": "{:%d-%m-%Y}"
     },
     "memory": {
-      "format": "{}% "
+      "format": "{}% "
     },
     "battery": {
       "bat": "BAT1",
@@ -38,13 +47,12 @@
             "critical": 15
       },
       "format": "{capacity}% {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+      "format-charging": "{capacity}% 󱐋",
+      "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-disconnected": "Disconnected ⚠",
+        "format-disconnected": "󰤭",
+        "format-wifi": "{signalStrength}% {icon}",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-icons": {
           "wifi": [
@@ -52,10 +60,9 @@
             "󰤟",  // 20–39%
             "󰤢",  // 40–59%
             "󰤥",  // 60–79%
-            ""   // 80–100%
+            "󰤨"   // 80–100%
           ]
         },
-        "format-wifi": "{icon} ({signalStrength}%)",
         "tooltip": true,
         "tooltip-format": "{essid} {bandwidthDownBytes} ({signalStrength}%)"
     },
@@ -63,7 +70,7 @@
       "format": "{}",
       "exec": "~/.config/hypr/scripts/waybar/network.sh",
       "interval": 10,
-      "return-type": "stdout",
+      "return-type": "json",
       "on-click": "nmcli connection up wg0-mullvad",
       "on-click-right": "nmcli connection down wg0-mullvad"
     },
