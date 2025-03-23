@@ -44,10 +44,20 @@
     },
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "tooltip": true,
-        "format-wifi": "{essid} {bandwidthDownBytes} ({signalStrength}%) ",
+        "format-disconnected": "Disconnected ⚠",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": "Disconnected ⚠"
+        "format-icons": {
+          "wifi": [
+            "󰤯",  // 0–19%
+            "󰤟",  // 20–39%
+            "󰤢",  // 40–59%
+            "󰤥",  // 60–79%
+            ""   // 80–100%
+          ]
+        },
+        "format-wifi": "{icon} ({signalStrength}%)",
+        "tooltip": true,
+        "tooltip-format": "{essid} {bandwidthDownBytes} ({signalStrength}%)"
     },
     "custom/network": {
       "format": "{}",
