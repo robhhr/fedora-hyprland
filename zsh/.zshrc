@@ -9,6 +9,15 @@ eval "$(pyenv init - zsh)"
 
 source $XDG_CONFIG_HOME/zsh/env.zsh
 
+# ignore commands with leading space in history
+setopt HIST_IGNORE_SPACE
+
+# do not store duplicate commands
+setopt HIST_IGNORE_DUPS
+
+# do not store lines starting with space *or* duplicates
+setopt HIST_IGNORE_ALL_DUPS
+
 # plugins
 plugins=(git zsh-autosuggestions shrink-path nvm)
 

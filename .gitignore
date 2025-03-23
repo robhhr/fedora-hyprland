@@ -10,3 +10,6 @@
 
 !/fastfetch/
 !/fastfetch/**
+
+!/zsh/
+!/zsh/**
