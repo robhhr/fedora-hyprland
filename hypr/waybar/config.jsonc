@@ -1,11 +1,9 @@
 {
-  "layer": "top", // Waybar at top layer
-  "position": "top", // Waybar at the bottom of your screen
-  "height": 24, // Waybar height
-    // "width": 1366, // Waybar width
-    // Choose the order of the modules
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+    // "width": 1366,
     "modules-left": ["group/leftWrapper"],
-    // "modules-center": ["hyprland/window"],
     "modules-right": ["tray", "group/rightWrapper"],
     "group/leftWrapper": {
       "orientation": "horizontal",
@@ -18,9 +16,6 @@
     "hyprland/workspaces": {
       "format": "{name}",
       "ignore-workspaces": ["order66"]
-      // "persistent-workspaces": {
-      //   "*": 3,
-      // }
     },
     "hyprland/window": {
       "format": "{title}",
@@ -46,9 +41,9 @@
             "warning": 30,
             "critical": 15
       },
-      "format": "{capacity}% {icon}",
-      "format-charging": "{capacity}% 󱐋",
-      "format-icons": ["", "", "", "", ""]
+      "format": "{capacity} {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-icons": ["󰂃", "󰁻", "󰁾", "󰂀", "󰁹"]
     },
     "network": {
         "format-disconnected": "󰤭",
@@ -56,11 +51,11 @@
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-icons": {
           "wifi": [
-            "󰤯",  // 0–19%
-            "󰤟",  // 20–39%
-            "󰤢",  // 40–59%
-            "󰤥",  // 60–79%
-            "󰤨"   // 80–100%
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
           ]
         },
         "tooltip": true,
@@ -75,17 +70,11 @@
       "on-click-right": "nmcli connection down wg0-mullvad"
     },
     "pulseaudio": {
-        //"scroll-step": 1,
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}",
         "format-muted": "",
         "format-icons": {
           "headphones": "",
-          "handsfree": "",
-          "headset": "",
-          "phone": "",
-          "portable": "",
-          "car": "",
           "default": ["", ""]
         },
         "on-click": "pavucontrol"
