@@ -11,5 +11,8 @@
 !/fastfetch/
 !/fastfetch/**
 
+!/wofi/
+!/wofi/**
+
 !/zsh/
 !/zsh/**
