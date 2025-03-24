@@ -1,5 +1,4 @@
 # actions
-# alias ls='lsd -lah'
 alias zshreload='source ~/.zshrc'
 alias grep='grep --color=auto'
 alias less='less -R'
@@ -10,6 +9,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias temp='~/Documents/temp'
+alias dev='~/dev'
 alias htdocs='~/../../Applications/MAMP/htdocs'
 alias wpl='~/Local\ Sites'
 alias config='~/.config'
@@ -37,5 +37,6 @@ alias tks='tmux kill-server'
 alias tx='tmuxinator'
 
 # misc
+alias m='mullvad'
 alias weather="curl v2.wttr.in/${1:-Vancouver} --silent | less -S -R -#3"
 
