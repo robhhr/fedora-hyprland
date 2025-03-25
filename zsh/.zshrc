@@ -1,7 +1,3 @@
-if [[ -f "$XDG_RUNTIME_DIR/gnome-keyring-ssh.env" ]]; then
-  source "$XDG_RUNTIME_DIR/gnome-keyring-ssh.env"
-fi
-
 export ZSH="$HOME/.oh-my-zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:$PATH"
