@@ -11,6 +11,9 @@
 !/fastfetch/
 !/fastfetch/**
 
+!/swhkd/
+!/swhkd/**
+
 !/wofi/
 !/wofi/**
 

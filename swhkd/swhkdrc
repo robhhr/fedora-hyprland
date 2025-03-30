@@ -1,0 +1,5 @@
+super + tab
+    ~/.config/hypr/scripts/cycle_last_windows.sh
+
+super + tab 300ms
+    ~/.config/hypr/scripts/app_switcher.sh
