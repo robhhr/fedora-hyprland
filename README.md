@@ -1,4 +1,4 @@
-config files for gnu/linux
+config files for fedora hyprland
 
 neovim config [repository](https://github.com/robhhr/nvim-world)
 
