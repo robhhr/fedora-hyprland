@@ -1,5 +1,4 @@
 @define-color bg_color #282828;
-@define-color fg_color #ebdbb2;
 @define-color fg_alt_color #fbf1c7;
 @define-color accent_color #ff2453;
 
@@ -26,11 +25,11 @@ window#waybar {
   border-radius: 5px;
   border-style: solid;
   border-width: 1px;
-  color: @fg_color;
   font-weight: bold;
   padding: 0;
   padding-left: 5px;
   padding-right: 0;
+  color: #ebdbb2;
 }
 
 #workspaces button.active {
@@ -85,7 +84,7 @@ window#waybar {
 
 tooltip {
   background-color: @bg_color;
-  color: @fg_color;
+  color: #ebdbb2;
   border-radius: 8px;
 }
 
