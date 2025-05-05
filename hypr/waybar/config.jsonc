@@ -2,82 +2,81 @@
   "layer": "top",
   "position": "top",
   "height": 24,
-    // "width": 1366,
-    "modules-left": ["group/leftWrapper"],
-    "modules-right": ["tray", "group/rightWrapper"],
-    "group/leftWrapper": {
-      "orientation": "horizontal",
-      "modules": ["hyprland/workspaces"]
+  "modules-left": ["group/leftWrapper"],
+  "modules-right": ["tray", "group/rightWrapper"],
+  "group/leftWrapper": {
+    "orientation": "horizontal",
+    "modules": ["hyprland/workspaces"]
+  },
+  "group/rightWrapper": {
+    "orientation": "horizontal",
+    "modules": ["pulseaudio", "network", "memory", "custom/network", "battery", "clock"]
+  },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "ignore-workspaces": ["order66"]
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "ellipsize": "end",
+    "scroll": false,
+    "separate-outputs": true,
+    "on-click": "wofi --show window",
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock": {
+    "format-alt": "{:%d-%m-%Y}"
+  },
+  "memory": {
+    "format": "{}% "
+  },
+  "battery": {
+    "bat": "BAT1",
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
     },
-    "group/rightWrapper": {
-      "orientation": "horizontal",
-      "modules": ["pulseaudio", "network", "memory", "custom/network", "battery", "clock"]
+    "format": "{capacity} {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-icons": ["󰂃", "󰁻", "󰁾", "󰂀", "󰁹"]
+  },
+  "network": {
+    "format-disconnected": "󰤭",
+    "format-wifi": "{signalStrength}% {icon}",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-icons": {
+      "wifi": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ]
     },
-    "hyprland/workspaces": {
-      "format": "{name}",
-      "ignore-workspaces": ["order66"]
+    "tooltip": true,
+    "tooltip-format": "{essid} {bandwidthDownBytes} ({signalStrength}%)"
+  },
+  "custom/network": {
+    "format": "{}",
+    "exec": "~/.config/hypr/scripts/waybar/network.sh",
+    "interval": 10,
+    "return-type": "json",
+    "on-click": "nmcli connection up wg0-mullvad",
+    "on-click-right": "nmcli connection down wg0-mullvad"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "default": ["", ""]
     },
-    "hyprland/window": {
-      "format": "{title}",
-      "max-length": 50,
-      "ellipsize": "end",
-      "scroll": false,
-      "separate-outputs": true,
-      "on-click": "wofi --show window",
-    },
-    "tray": {
-        "spacing": 10
-    },
-    "clock": {
-      "format-alt": "{:%d-%m-%Y}"
-    },
-    "memory": {
-      "format": "{}% "
-    },
-    "battery": {
-      "bat": "BAT1",
-      "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-      },
-      "format": "{capacity} {icon}",
-      "format-charging": "{capacity}% 󰂄",
-      "format-icons": ["󰂃", "󰁻", "󰁾", "󰂀", "󰁹"]
-    },
-    "network": {
-        "format-disconnected": "󰤭",
-        "format-wifi": "{signalStrength}% {icon}",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-icons": {
-          "wifi": [
-            "󰤯",
-            "󰤟",
-            "󰤢",
-            "󰤥",
-            "󰤨"
-          ]
-        },
-        "tooltip": true,
-        "tooltip-format": "{essid} {bandwidthDownBytes} ({signalStrength}%)"
-    },
-    "custom/network": {
-      "format": "{}",
-      "exec": "~/.config/hypr/scripts/waybar/network.sh",
-      "interval": 10,
-      "return-type": "json",
-      "on-click": "nmcli connection up wg0-mullvad",
-      "on-click-right": "nmcli connection down wg0-mullvad"
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-          "headphones": "",
-          "default": ["", ""]
-        },
-        "on-click": "pavucontrol"
-    }
+    "on-click": "pavucontrol"
+  }
 }
 
