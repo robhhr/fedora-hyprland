@@ -13,6 +13,7 @@ alias dev='~/dev'
 alias htdocs='~/../../Applications/MAMP/htdocs'
 alias wpl='~/Local\ Sites'
 alias config='~/.config'
+alias hconf='~/.config/hypr/'
 
 # git
 alias g='git'
@@ -29,14 +30,9 @@ alias gsw='git switch'
 alias n='nvim'
 alias nconf='nvim ~/.config/nvim/'
 alias nzsh='nvim ~/.zshrc'
-alias aliases='nvim ~/.zsh/aliases.zsh'
-
-# tmux
-alias t='tmux'
-alias tks='tmux kill-server'
-alias tx='tmuxinator'
 
 # misc
+alias t='tmux'
 alias m='mullvad'
 alias weather="curl v2.wttr.in/${1:-Vancouver} --silent | less -S -R -#3"
 
