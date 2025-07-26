@@ -1,7 +1,9 @@
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
 export ZSH="$HOME/.oh-my-zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 # export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:$PATH"
-export PATH="$HOME/.config/composer/vendor/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin"
+export PATH="$HOME/.config/composer/vendor/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:$HOME/go/bin:$HOME/.local/bin/"
 export PGDATA="$HOME/Documents/postgres/"
 
 export NVM_DIR="$HOME/.nvm"
@@ -29,9 +31,5 @@ plugins=(git zsh-autosuggestions shrink-path nvm)
 source $ZSH/oh-my-zsh.sh
 
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-export PATH=$PATH:$HOME/go/bin
 
 eval "$(starship init zsh)"
