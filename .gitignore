@@ -17,6 +17,9 @@
 !/swhkd/
 !/swhkd/**
 
+!/tmux/
+!/tmux/**
+
 !/wofi/
 !/wofi/**
 
