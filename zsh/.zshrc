@@ -43,3 +43,11 @@ source $XDG_CONFIG_HOME/zsh/env.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
 
 eval "$(starship init zsh)"
+
+# pnpm
+export PNPM_HOME="/home/unicorn/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
