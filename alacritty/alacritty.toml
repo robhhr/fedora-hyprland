@@ -23,6 +23,11 @@ bindings = [
 decorations = "Buttonless"
 padding = { x = 20, y = 20 }
 
+[hints]
+enabled = [
+  { regex = '(mailto:|https://|http://|file:|git://|ssh:|ftp://)[^\s<>"]+', hyperlinks = true, command = "xdg-open", post_processing = true, mouse = { enabled = true, mods = "Control" } }
+]
+
 [general]
 import = [
     "~/.config/alacritty/active-theme.toml"
