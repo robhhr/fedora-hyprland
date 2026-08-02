@@ -36,4 +36,5 @@ alias weather="curl v2.wttr.in/${1:-Vancouver} --silent | less -S -R -#3"
 alias cc='claude'
 alias cx='codex'
 alias theme='~/bin/toggle-theme'
+alias open='nautilus .'
 
