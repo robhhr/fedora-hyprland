@@ -1,4 +1,5 @@
 local vars = require("lua.vars")
+local monitors = require("lua.monitors")
 local mainMod = vars.mainMod
 local terminal = vars.terminal
 local browser = vars.browser
@@ -19,10 +20,6 @@ hl.bind(mainMod .. " + J",
   hl.dsp.layout("togglesplit")
 )
 
-hl.bind(mainMod .. " + L",
-  hl.dsp.exec_cmd("hyprlock")
-)
-
 hl.bind(mainMod .. " + O",
   hl.dsp.exec_cmd("~/.config/hypr/scripts/powermenu.sh")
 )
@@ -31,6 +28,9 @@ hl.bind(mainMod .. " + O",
 hl.bind(mainMod .. " + W",
   hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_waybar.sh")
 )
+
+-- displays: step the focused monitor through the scales that are safe for it
+hl.bind(mainMod .. " + P", monitors.cycle_scale)
 
 -- app/window switcher
 hl.bind(mainMod .. " + TAB",
@@ -41,9 +41,8 @@ hl.bind("SUPER + SHIFT + TAB",
   hl.dsp.exec_cmd("~/.config/hypr/scripts/cycle_windows_reverse.sh")
 )
 
--- lock screen
 hl.bind(mainMod .. " + L",
-  hl.dsp.exec_cmd("hyprlock")
+  hl.dsp.exec_cmd("loginctl lock-session")
 )
 
 -- screenshots

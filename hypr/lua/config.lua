@@ -6,7 +6,8 @@ hl.config({
     layout = "dwindle",
 
     col = {
-      active_border = "rgba(fabd2fff)",
+      -- active_border = "rgba(fabd2fff)",
+      active_border = "rgba(fb4934aa)",
       inactive_border = "rgba(928374aa)"
     },
   },
@@ -18,10 +19,13 @@ hl.config({
   input = {
     kb_layout = "us",
     kb_options = "caps:escape",
+    natural_scroll = true,
   },
 
   misc = {
     disable_hyprland_logo = true,
     force_default_wallpaper = 0,
+    -- hyprland-guiutils isn't packaged for Fedora; skip the startup nag
+    disable_hyprland_guiutils_check = true,
   },
 })
