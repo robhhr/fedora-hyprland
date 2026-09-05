@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# Decides which wallpaper each display gets, and sets it.
-#
-# `hyprctl hyprpaper` does NOT work on this setup: hyprctl from Hyprland 0.55
-# speaks the newer hyprwire protocol, while hyprpaper 0.7.6 still uses the
-# plaintext socket. So talk to that socket directly instead.
-#
 # usage:
 #   wallpaper.sh refresh             apply the tables below to every display
 #   wallpaper.sh reload              same, but drop hyprpaper's cached images
@@ -30,38 +24,20 @@ set -euo pipefail
 wallpapers="$HOME/.config/hypr/wallpapers"
 sock="$XDG_RUNTIME_DIR/hypr/${HYPRLAND_INSTANCE_SIGNATURE:-}/.hyprpaper.sock"
 
-# hyprpaper's listactive only ever reports a bare path, never the fit mode, so a
-# refresh has no way to recover it from the daemon. Keep our own note of it.
 fit_state="$XDG_RUNTIME_DIR/hypr-wallpaper-fit"
 
-# ─── which wallpaper goes where ───────────────────────────────────────────────
-#
-# Values are filenames inside ~/.config/hypr/wallpapers (an absolute path works
-# too), optionally carrying their own fit mode: "contain:5.jpg".
-#
-# BY_DISPLAY is checked first, then BY_COUNT, then DEFAULT.
-
-# Keyed on how many displays are connected. This is the broad stroke: every
-# display that BY_DISPLAY does not name gets the entry for the current count.
 declare -A BY_COUNT=(
-  [1]="evangelion.png"   # laptop on its own
-  [2]="main.png"         # laptop + one external
-  [3]="smile.png"         # laptop + two externals
+  [1]="evangelion.png"      # laptop on its own
+  [2]="main.png"            # laptop + one external
+  [3]="smile.png"           # laptop + two externals
 )
 
-# Keyed on a single display, and wins over BY_COUNT. Use this to pin one screen
-# while the rest follow the layout.
-#
-# Prefer the EDID description over the connector name: an external arrives as
-# one of DP-1..DP-8 depending on which USB-C port it went into, so its name
-# changes between plugs but its description does not. eDP-1 is the exception --
-# the built-in panel is always eDP-1. `hyprctl monitors` prints both.
 declare -A BY_DISPLAY=(
   # ["eDP-1"]="SDS-3x2.jpg"
   # ["LG Electronics 24GL600F 0x00073113"]="SDS.jpg"
 )
 
-# When neither table has an answer -- a fourth display, say.
+# fourth fallback display, say.
 DEFAULT="v.jpeg"
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -98,7 +74,6 @@ case "${fit:-cover}" in
     ;;
 esac
 
-# the fit last chosen by hand, used for table entries that don't name one
 manual_fit=""
 if [ -r "$fit_state" ]; then
   manual_fit=$(cat "$fit_state")
@@ -106,12 +81,6 @@ fi
 
 ipc() { printf '%s' "$1" | ncat -U -w1 "$sock"; }
 
-# True only when something actually answers on the socket.
-#
-# Testing for the socket file is not enough: a dead hyprpaper leaves its socket
-# inode behind. Verified -- after `pkill hyprpaper` the file is still there and
-# connecting to it fails with "Connection refused", so a file-existence check
-# sails straight past and every later command dies one by one.
 hyprpaper_alive() {
   [ -S "$sock" ] && printf 'listloaded' | ncat -U -w1 "$sock" >/dev/null 2>&1
 }
@@ -123,8 +92,6 @@ require_hyprpaper() {
   fi
 }
 
-# Same, but give it time to come up. At login we are racing hyprpaper's own
-# startup, and failing there would leave every screen blank with no hint why.
 await_hyprpaper() {
   local waited=0
   while ! hyprpaper_alive && [ "$waited" -lt 100 ]; do
@@ -134,7 +101,6 @@ await_hyprpaper() {
   require_hyprpaper
 }
 
-# name + description + display count -> "<value>\t<which rule matched>"
 resolve() {
   local name=$1 desc=$2 count=$3
   if [ -n "${BY_DISPLAY[$desc]:-}" ]; then
@@ -148,7 +114,6 @@ resolve() {
   fi
 }
 
-# "contain:5.jpg" -> rule_fit="contain:" rule_path="/abs/path/5.jpg"
 split_rule() {
   local value=$1
   case "$value" in
@@ -163,7 +128,6 @@ split_rule() {
   esac
 }
 
-# name<TAB>description, one line per connected display
 connected() {
   hyprctl -j monitors | jq -r '.[] | "\(.name)\t\(.description)"'
 }
@@ -185,25 +149,9 @@ if [ "$target" = "show" ]; then
 fi
 
 if [ "$target" = "refresh" ] || [ "$target" = "reload" ]; then
-  # Let the compositor finish reconfiguring the layer surfaces first. Talking to
-  # hyprpaper mid-reconfigure is what makes it attach a buffer to a surface that
-  # has not been configured yet, which is a fatal protocol error.
-  #
-  # Deliberately no "restart hyprpaper if it looks dead" fallback here. That was
-  # tried, and two hyprpaper instances fighting over one layer surface is far
-  # worse than a missing wallpaper -- they kill each other with "Serial invalid
-  # in ack_configure". hyprpaper survives displays coming and going by itself;
-  # all it needs is to be told to repaint afterwards.
-  # only when reacting to a hotplug; a hand-run reload has nothing to wait for
   [ "$target" = "refresh" ] && sleep "${WALLPAPER_REFRESH_DELAY:-1.5}"
   await_hyprpaper
 
-  # `reload` is for after you edit an image file *in place*. hyprpaper caches
-  # decoded images by path, and a second `preload` of a path it already holds is
-  # a silent no-op -- it keeps serving the old pixels. Verified: overwriting a
-  # file and re-preloading changes nothing on screen until it is unloaded first.
-  # Editing the tables above needs no unload, since that changes which path is
-  # asked for, so plain `refresh` is enough.
   [ "$target" = "reload" ] && ipc "unload all" >/dev/null
 
   count=$(hyprctl -j monitors | jq 'length')
@@ -222,8 +170,6 @@ if [ "$target" = "refresh" ] || [ "$target" = "reload" ]; then
     paths+=("$rule_fit$rule_path")
   done < <(connected)
 
-  # every image has to be preloaded before any output can be pointed at it, and
-  # preload takes a bare path -- it rejects a mode prefix ("no such file")
   declare -A seen=()
   for entry in "${paths[@]}"; do
     bare=${entry#*:}
@@ -255,15 +201,11 @@ if [ ! -f "$target" ]; then
   exit 1
 fi
 
-# preload takes a bare path -- it rejects a mode prefix ("no such file")
 ipc "preload $target" >/dev/null
 ipc "wallpaper $monitor,$prefix$target" >/dev/null
 
-# drop everything we are no longer showing, so we don't leak shared memory
 ipc "unload unused" >/dev/null
 
 printf '%s' "$prefix" > "$fit_state"
 
-# A hand-set wallpaper lasts until the next display change: plugging or
-# unplugging runs `refresh`, which goes back to the tables at the top.
 echo "$monitor -> ${prefix}$target"
